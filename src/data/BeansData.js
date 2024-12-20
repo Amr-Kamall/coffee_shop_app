@@ -7,7 +7,7 @@ const BeansData = [
     roasted: 'Medium Roasted',
     imagelink_square: require('../assets/coffee_assets/robusta_coffee_beans/robusta_coffee_beans_square.png'),
     imagelink_portrait: require('../assets/coffee_assets/robusta_coffee_beans/robusta_coffee_beans_portrait.png'),
-    ingredients: 'Africa',
+    origin: 'Africa',
     special_ingredient: 'From Africa',
     prices: [
       {size: '250gm', price: '5.50', currency: '$'},
@@ -27,7 +27,7 @@ const BeansData = [
     roasted: 'Medium Roasted',
     imagelink_square: require('../assets/coffee_assets/arabica_coffee_beans/arabica_coffee_beans_square.png'),
     imagelink_portrait: require('../assets/coffee_assets/arabica_coffee_beans/arabica_coffee_beans_portrait.png'),
-    ingredients: 'Africa',
+    origin: 'Africa',
     special_ingredient: 'From Africa',
     prices: [
       {size: '250gm', price: '5.50', currency: '$'},
@@ -47,7 +47,7 @@ const BeansData = [
     roasted: 'Medium Roasted',
     imagelink_square: require('../assets/coffee_assets/liberica_coffee_beans/liberica_coffee_beans_square.png'),
     imagelink_portrait: require('../assets/coffee_assets/liberica_coffee_beans/liberica_coffee_beans_portrait.png'),
-    ingredients: 'Malaysia',
+    origin: 'Malaysia',
     special_ingredient: 'From Malaysia',
     prices: [
       {size: '250gm', price: '5.50', currency: '$'},
@@ -67,7 +67,7 @@ const BeansData = [
     roasted: 'Medium Roasted',
     imagelink_square: require('../assets/coffee_assets/excelsa_coffee_beans/excelsa_coffee_beans_square.png'),
     imagelink_portrait: require('../assets/coffee_assets/excelsa_coffee_beans/excelsa_coffee_beans_portrait.png'),
-    ingredients: 'Malaysia',
+    origin: 'Malaysia',
     special_ingredient: 'From Malaysia',
     prices: [
       {size: '250gm', price: '5.50', currency: '$'},

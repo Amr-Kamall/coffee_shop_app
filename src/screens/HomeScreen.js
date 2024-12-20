@@ -140,7 +140,7 @@ const HomeScreen = () => {
             horizontal
             data={filteredCoffee}
             initialNumToRender={4}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.id.toString()}
             nestedScrollEnabled={true}
             renderItem={({item}) => <CoffeeCard item={item} />}
           />

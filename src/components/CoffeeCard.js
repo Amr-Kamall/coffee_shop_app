@@ -11,12 +11,18 @@ import LinearGradient from 'react-native-linear-gradient';
 import {COLORS} from '../theme/theme';
 import IconButton from './IconButton';
 import CustomIcon from './CustomIcon';
+import {useNavigation} from '@react-navigation/native';
+import {useCoffeeContext} from '../store/CoffeeContext';
 
 const width_dimension = Dimensions.get('window').width * 0.4;
 
 function CoffeeCard({item}) {
+  const navigation = useNavigation();
+  const {addToCart} = useCoffeeContext();
   return (
-    <Pressable style={styles.card}>
+    <Pressable
+      style={styles.card}
+      onPress={() => navigation.push('details', {coffee: item})}>
       <LinearGradient
         start={{x: 0, y: 0}}
         end={{x: 1, y: 1}}
@@ -41,7 +47,12 @@ function CoffeeCard({item}) {
             {item.prices[0].price}
           </Text>
           <View>
-            <IconButton icon="plus" size={22} color={COLORS.primaryWhiteHex} />
+            <IconButton
+              icon="plus"
+              onPress={() => addToCart(item)}
+              size={22}
+              color={COLORS.primaryWhiteHex}
+            />
           </View>
         </View>
       </LinearGradient>
@@ -53,6 +64,7 @@ const styles = StyleSheet.create({
     width: width_dimension,
     marginRight: 10,
     borderRadius: 20,
+    zIndex: 100000,
   },
   linearGradient: {
     padding: 10,

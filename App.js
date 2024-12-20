@@ -17,7 +17,11 @@ function App() {
             name="tapNavigator"
             options={{headerShown: false}}
           />
-          <Stack.Screen component={DetailsScreen} name="details" />
+          <Stack.Screen
+            component={DetailsScreen}
+            name="details"
+            options={{headerShown: false}}
+          />
           <Stack.Screen component={PaymentScreen} name="payment" />
         </Stack.Navigator>
       </NavigationContainer>

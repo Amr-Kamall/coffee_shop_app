@@ -61,7 +61,7 @@ function TapNavigator() {
         tabBarShowLabel: false,
         tabBarStyle: {
           position: 'absolute',
-          backgroundColor: 'transparent',
+          backgroundColor: COLORS.primaryDarkGreyHex,
           elevation: 0,
           height: 60,
           borderTopWidth: 0,
@@ -69,15 +69,15 @@ function TapNavigator() {
         tabBarItemStyle: {
           paddingVertical: 10,
         },
-        tabBarBackground: () => (
-          <BlurView
-            overlayColor="transparent"
-            style={styles.blurView}
-            blurType="light"
-            blurAmount={10}
-            reducedTransparencyFallbackColor="white"
-          />
-        ),
+        // tabBarBackground: () => (
+        //   <BlurView
+        //     overlayColor="transparent"
+        //     style={styles.blurView}
+        //     blurType="light"
+        //     blurAmount={10}
+        //     reducedTransparencyFallbackColor="white"
+        //   />
+        // ),
       }}>
       <Tap.Screen
         component={HomeScreen}
@@ -106,10 +106,9 @@ function TapNavigator() {
 const styles = StyleSheet.create({
   blurView: {
     position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    top: 0,
+    overflow: 'hidden',
+    backgroundColor: 'transparent',
+    ...StyleSheet.absoluteFillObject,
   },
 });
 
