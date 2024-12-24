@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import DetailsScreen from './src/screens/DetailsScreen';
 import PaymentScreen from './src/screens/PaymentScreen';
-import TapNavigator from './src/components/TapNavigator';
+import TapNavigator from './src/components/navigator/TapNavigator';
 import {CoffeeProvider} from './src/store/CoffeeContext';
 
 const Stack = createNativeStackNavigator();

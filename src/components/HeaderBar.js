@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import GradientIcon from './GradientIcon';
+import {View, StyleSheet, Text} from 'react-native';
 import {COLORS} from '../theme/theme';
 import ProfilePhoto from './ProfilePhoto';
+import GradientIcon from './ui/GradientIcon';
 
-function HeaderBar() {
+function HeaderBar({title}) {
   return (
     <View style={styles.headerBar}>
       <GradientIcon
@@ -12,6 +12,7 @@ function HeaderBar() {
         size={20}
         color={COLORS.primaryLightGreyHex}
       />
+      {title && <Text style={styles.headerText}>{title}</Text>}
       <ProfilePhoto />
     </View>
   );
@@ -22,6 +23,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    width: '100%',
+  },
+  headerText: {
+    fontSize: 18,
+    color: COLORS.primaryWhiteHex,
+    fontWeight: '500',
   },
 });
 

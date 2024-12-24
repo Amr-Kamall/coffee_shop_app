@@ -12,14 +12,14 @@ import {
 import {useCoffeeContext} from '../store/CoffeeContext';
 import HeaderBar from '../components/HeaderBar';
 import {COLORS, FONTFAMILY, FONTSIZE} from '../theme/theme';
-import CustomIcon from '../components/CustomIcon';
+import CustomIcon from '../components/ui/CustomIcon';
 import CoffeeCard from '../components/CoffeeCard';
 
 const HomeScreen = () => {
-  const {cofeeList, beansList} = useCoffeeContext();
+  const {coffeeList, beansList} = useCoffeeContext();
   const [searchText, setSearchText] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
-  const [filteredCoffee, setFilteredCoffee] = useState(cofeeList);
+  const [filteredCoffee, setFilteredCoffee] = useState(coffeeList);
   const listRef = useRef();
 
   // get categories list
@@ -39,7 +39,7 @@ const HomeScreen = () => {
     listRef?.current?.scrollToOffset({animated: true, offset: 0});
 
     setActiveCategory(categoryName);
-    const filteredCoffeeFromCategories = cofeeList.filter(coffee =>
+    const filteredCoffeeFromCategories = coffeeList.filter(coffee =>
       coffee.category.includes(categoryName),
     );
     // to set the coffee data
@@ -55,7 +55,7 @@ const HomeScreen = () => {
 
     // implement search func
     const lowercasedText = enteredText.toLowerCase();
-    const filteredCoffeeBySearch = cofeeList.filter(coffee =>
+    const filteredCoffeeBySearch = coffeeList.filter(coffee =>
       coffee.name.toLowerCase().includes(lowercasedText),
     );
     setFilteredCoffee(filteredCoffeeBySearch);
@@ -65,8 +65,8 @@ const HomeScreen = () => {
     setSearchText(''); //here the problem
     setFilteredCoffee(
       activeCategory === 'All'
-        ? cofeeList
-        : cofeeList.filter(coffee => coffee.category.includes(activeCategory)),
+        ? coffeeList
+        : coffeeList.filter(coffee => coffee.category.includes(activeCategory)),
     );
   }
 

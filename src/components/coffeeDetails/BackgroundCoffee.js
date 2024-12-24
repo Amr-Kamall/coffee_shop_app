@@ -1,36 +1,70 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
   StyleSheet,
   ImageBackground,
-  TouchableOpacity,
   Image,
+  Pressable,
 } from 'react-native';
-import GradientIcon from './GradientIcon';
-import {COLORS} from '../theme/theme';
-import CustomIcon from './CustomIcon';
 import {useNavigation} from '@react-navigation/native';
+
+import {COLORS} from '../../theme/theme';
+import GradientIcon from '../ui/GradientIcon';
+import CustomIcon from '../ui/CustomIcon';
+import {useCoffeeContext} from '../../store/CoffeeContext';
 
 function BackgroundCoffee({coffee}) {
   const navigation = useNavigation();
+  const {addToFavourite, favouritesCoffee} = useCoffeeContext();
+  const [isFavourite, setIsFavourite] = useState(false);
+
+  useEffect(
+    function () {
+      const isFavouriteFromContext = favouritesCoffee.find(
+        favourite => favourite.id === coffee.id,
+      );
+      if (isFavouriteFromContext) {
+        setIsFavourite(true);
+      }
+    },
+    [favouritesCoffee, coffee],
+  );
+
+  function handleAddToFavourite() {
+    setIsFavourite(isFav => !isFav);
+    setTimeout(function () {
+      addToFavourite(coffee, isFavourite);
+    }, 100);
+  }
+
   return (
     <ImageBackground
       style={styles.backgroundImageContainer}
       source={coffee.imagelink_portrait}>
       {/* header background */}
       <View style={styles.backgroundHeader}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Pressable
+          style={({pressed}) => pressed && styles.pressed}
+          onPress={() => navigation.goBack()}>
           <GradientIcon
             size={20}
             name="arrow-left"
             color={COLORS.primaryLightGreyHex}
           />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <GradientIcon size={20} name="heart" color={COLORS.primaryRedHex} />
-        </TouchableOpacity>
+        </Pressable>
+        <Pressable
+          onPress={handleAddToFavourite}
+          style={({pressed}) => pressed && styles.pressed}>
+          <GradientIcon
+            size={20}
+            name="heart"
+            color={
+              isFavourite ? COLORS.primaryRedHex : COLORS.primaryLightGreyHex
+            }
+          />
+        </Pressable>
       </View>
       {/* footer background */}
       <View style={styles.backgroundFooter}>
@@ -47,8 +81,8 @@ function BackgroundCoffee({coffee}) {
                 style={styles.imageCoffeIcon}
                 source={
                   coffee.type === 'Bean'
-                    ? require('../assets/app_images/bean.png')
-                    : require('../assets/app_images/beans.png')
+                    ? require('../../assets/app_images/bean.png')
+                    : require('../../assets/app_images/beans.png')
                 }
               />
               <Text style={styles.coffeeText}>{coffee.type}</Text>
@@ -156,6 +190,9 @@ const styles = StyleSheet.create({
   },
   coffeeRoasted: {
     color: COLORS.secondaryLightGreyHex,
+  },
+  pressed: {
+    opacity: 0.7,
   },
 });
 

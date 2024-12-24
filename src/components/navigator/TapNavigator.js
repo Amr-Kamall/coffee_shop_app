@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import HomeScreen from '../screens/HomeScreen';
-import OrderHistoryScreen from '../screens/OrderHistoryScreen';
-import FavouritesScreen from '../screens/FavouritesScreen';
-import CartScreen from '../screens/CartScreen';
-import {COLORS} from '../theme/theme';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {BlurView} from '@react-native-community/blur';
 import {StyleSheet} from 'react-native';
+import HomeScreen from '../../screens/HomeScreen';
+import OrderHistoryScreen from '../../screens/OrderHistoryScreen';
+import FavouritesScreen from '../../screens/FavouritesScreen';
+import CartScreen from '../../screens/CartScreen';
+import {COLORS} from '../../theme/theme';
 
 const Tap = createBottomTabNavigator();
 
@@ -85,8 +85,8 @@ function TapNavigator() {
         options={{tabBarIcon: HomeIcon}}
       />
       <Tap.Screen
-        component={OrderHistoryScreen}
-        name="orderHistory"
+        component={CartScreen}
+        name="cart"
         options={{tabBarIcon: CartIcon}}
       />
       <Tap.Screen
@@ -95,8 +95,8 @@ function TapNavigator() {
         options={{tabBarIcon: HeartIcon}}
       />
       <Tap.Screen
-        component={CartScreen}
-        name="bell"
+        component={OrderHistoryScreen}
+        name="OrderHistoryScreen"
         options={{tabBarIcon: BellIcon}}
       />
     </Tap.Navigator>

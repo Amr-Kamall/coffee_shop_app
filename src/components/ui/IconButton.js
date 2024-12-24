@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {Pressable, StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {COLORS} from '../theme/theme';
+import { COLORS } from '../../theme/theme';
 
 function IconButton({icon, size, color, onPress}) {
   return (
@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primaryOrangeHex,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius:7,
-    padding:4,
+    borderRadius: 7,
+    padding: 4,
   },
   pressed: {
     opacity: 0.75,

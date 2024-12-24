@@ -9,16 +9,22 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {COLORS} from '../theme/theme';
-import IconButton from './IconButton';
-import CustomIcon from './CustomIcon';
+import CustomIcon from './ui/CustomIcon';
 import {useNavigation} from '@react-navigation/native';
 import {useCoffeeContext} from '../store/CoffeeContext';
+import IconButton from './ui/IconButton';
 
 const width_dimension = Dimensions.get('window').width * 0.4;
 
 function CoffeeCard({item}) {
   const navigation = useNavigation();
   const {addToCart} = useCoffeeContext();
+  function handleAddToCart() {
+    const selectedSize = item.prices[0]; // Assuming prices[0] is the default size
+    console.log('here:', selectedSize); //we stopped
+
+    addToCart({...item, selectedSizes: selectedSize});
+  }
   return (
     <Pressable
       style={styles.card}
@@ -49,7 +55,7 @@ function CoffeeCard({item}) {
           <View>
             <IconButton
               icon="plus"
-              onPress={() => addToCart(item)}
+              onPress={handleAddToCart}
               size={22}
               color={COLORS.primaryWhiteHex}
             />
