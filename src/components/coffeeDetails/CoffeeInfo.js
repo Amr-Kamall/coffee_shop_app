@@ -10,12 +10,16 @@ import {
 import {COLORS} from '../../theme/theme';
 import {useCoffeeContext} from '../../store/CoffeeContext';
 import PrimaryCoffeeButton from '../ui/PrimaryCoffeeButton';
+import CoffeePrice from '../CoffeePrice';
+import {useNavigation} from '@react-navigation/native';
+import {Screen} from 'react-native-screens';
 
 function CoffeeInfo({coffee}) {
   const [fullText, setFullText] = useState(false);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
   const {addToCart} = useCoffeeContext();
   const [selectedSizes, setSelectedSizes] = useState(coffee.prices[0]);
+  // const navigation = useNavigation();
 
   function handleAddToCart() {
     const updatedCoffee = {
@@ -23,6 +27,7 @@ function CoffeeInfo({coffee}) {
       selectedSizes,
     };
     addToCart(updatedCoffee); // Pass the coffee with the selected size
+    // navigation.navigate('tapNavigator', {screen: 'cart'});
   }
 
   function handleSelectIndex(index) {
@@ -65,18 +70,7 @@ function CoffeeInfo({coffee}) {
           ))}
         </View>
         <View style={styles.pricingCoffee}>
-          <View style={styles.priceContainer}>
-            <Text style={styles.coffeeCurrency}>
-              {coffee.prices[0].currency}
-              {/* دولار العمله */}
-            </Text>
-            <View>
-              <Text style={styles.priceText}>Price</Text>
-              <Text style={styles.coffeePrice}>
-                {coffee.prices[selectedSizeIndex].price}
-              </Text>
-            </View>
-          </View>
+          <CoffeePrice> {coffee.prices[selectedSizeIndex].price}</CoffeePrice>
           <PrimaryCoffeeButton onPress={handleAddToCart}>
             Add to cart
           </PrimaryCoffeeButton>

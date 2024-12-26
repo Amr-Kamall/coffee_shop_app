@@ -17,16 +17,31 @@ function CoffeeProvider({children}) {
       const existingCoffee = currentCart.find(item => item.id === coffee.id);
 
       if (existingCoffee) {
-        // Check if the size already exists
         const sizeExists = existingCoffee.selectedSizes.some(
           size => size.size === coffee.selectedSizes.size,
         );
 
         if (!sizeExists) {
-          // Add the new size to the existing coffee item
-          existingCoffee.selectedSizes.push(coffee.selectedSizes);
+          // Create a new array for selectedSizes
+          const updatedSizes = [
+            ...existingCoffee.selectedSizes,
+            coffee.selectedSizes,
+          ];
+
+          // Create a new coffee object
+          const updatedCoffee = {
+            ...existingCoffee,
+            selectedSizes: updatedSizes,
+          };
+
+          // Replace the existing coffee with the updated one
+          return currentCart.map(item =>
+            item.id === coffee.id ? updatedCoffee : item,
+          );
         }
-        return [...currentCart];
+
+        // If size already exists, return currentCart without modification
+        return currentCart;
       }
 
       // If coffee is not in the cart, add it as a new entry
@@ -64,6 +79,19 @@ function CoffeeProvider({children}) {
     setCart(coffees => coffees.filter(coffee => coffee.id !== coffeeId));
   }
 
+  function getTotalPrice() {
+    const prices = cart.map(cartItem =>
+      cartItem.selectedSizes.reduce(
+        (acc, cur) => acc + Number(cur.price) * cur.quantity,
+        0,
+      ),
+    );
+    return prices?.reduce((acc, cur) => acc + cur, 0);
+  }
+  console.log('price data amrooo:', getTotalPrice());
+
+  // console.log('cart ahee:', cart);
+
   return (
     <CoffeeContext.Provider
       value={{
@@ -75,6 +103,7 @@ function CoffeeProvider({children}) {
         cart: cart,
         setCart: setCart,
         removeCoffeeItem: removeCoffeeItem,
+        getTotalPrice: getTotalPrice,
       }}>
       {children}
     </CoffeeContext.Provider>

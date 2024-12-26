@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
     color: COLORS.primaryWhiteHex,
     textAlign: 'center',
   },
-  // pressed: {
-  //   opacity: 0.7,
-  // },
+  pressed: {
+    opacity: 0.7,
+  },
 });
 
 export default PrimaryCoffeeButton;
