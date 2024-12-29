@@ -11,8 +11,6 @@ import {COLORS} from '../../theme/theme';
 import {useCoffeeContext} from '../../store/CoffeeContext';
 import PrimaryCoffeeButton from '../ui/PrimaryCoffeeButton';
 import CoffeePrice from '../CoffeePrice';
-import {useNavigation} from '@react-navigation/native';
-import {Screen} from 'react-native-screens';
 
 function CoffeeInfo({coffee}) {
   const [fullText, setFullText] = useState(false);

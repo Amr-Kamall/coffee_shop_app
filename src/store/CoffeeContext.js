@@ -58,7 +58,7 @@ function CoffeeProvider({children}) {
     );
   }
 
-  function addToFavourite(newFavourite, isFavourite) {
+  function addToFavourite(newFavourite) {
     setFavouritesCoffee(favourites => {
       const isCoffeeFavourite = favourites.some(
         favouriteItem => favouriteItem.id === newFavourite.id,
@@ -73,6 +73,7 @@ function CoffeeProvider({children}) {
         return [...favourites, newFavourite];
       }
     });
+    console.log('favourites:', favouritesCoffee);
   }
 
   function removeCoffeeItem(coffeeId) {

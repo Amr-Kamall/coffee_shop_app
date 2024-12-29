@@ -15,7 +15,7 @@ import GradientIcon from '../ui/GradientIcon';
 import CustomIcon from '../ui/CustomIcon';
 import {useCoffeeContext} from '../../store/CoffeeContext';
 
-function BackgroundCoffee({coffee}) {
+function BackgroundCoffee({coffee, isNavigated}) {
   const navigation = useNavigation();
   const {addToFavourite, favouritesCoffee} = useCoffeeContext();
   const [isFavourite, setIsFavourite] = useState(false);
@@ -44,16 +44,24 @@ function BackgroundCoffee({coffee}) {
       style={styles.backgroundImageContainer}
       source={coffee.imagelink_portrait}>
       {/* header background */}
-      <View style={styles.backgroundHeader}>
-        <Pressable
-          style={({pressed}) => pressed && styles.pressed}
-          onPress={() => navigation.goBack()}>
-          <GradientIcon
-            size={20}
-            name="arrow-left"
-            color={COLORS.primaryLightGreyHex}
-          />
-        </Pressable>
+      <View
+        style={[
+          styles.backgroundHeader,
+          isNavigated
+            ? {justifyContent: 'space-between'}
+            : {justifyContent: 'flex-end'},
+        ]}>
+        {isNavigated && (
+          <Pressable
+            style={({pressed}) => pressed && styles.pressed}
+            onPress={() => navigation.goBack()}>
+            <GradientIcon
+              size={20}
+              name="arrow-left"
+              color={COLORS.primaryLightGreyHex}
+            />
+          </Pressable>
+        )}
         <Pressable
           onPress={handleAddToFavourite}
           style={({pressed}) => pressed && styles.pressed}>
@@ -130,13 +138,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
+
   imageCoffeIcon: {
     width: 25,
     height: 25,
   },
   backgroundFooter: {
     paddingHorizontal: 20,
-    paddingVertical: 15,
+    paddingVertical: 10,
     backgroundColor: COLORS.primaryBlackRGBA,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

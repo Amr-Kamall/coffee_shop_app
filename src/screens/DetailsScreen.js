@@ -8,7 +8,7 @@ function DetailsScreen({route}) {
   return (
     <View style={styles.container}>
       {/* first part */}
-      <BackgroundCoffee coffee={selectedCoffee} />
+      <BackgroundCoffee coffee={selectedCoffee} isNavigated="isNavigated" />
       {/* second part */}
       <CoffeeInfo coffee={selectedCoffee} />
     </View>
